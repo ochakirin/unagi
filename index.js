@@ -29,7 +29,6 @@ client.on('messageCreate', message => {
   if (message.author.bot) return;
 
   // メッセージに「出走」が含まれているか判定
-  // ※完全一致にしたい場合は `message.content === "出走"` に変更してください
   if (message.content.includes("出走")) {
     // キーワードリストの中からランダムに1つ選択
     const selectedKeyword = KEYWORDS[Math.floor(Math.random() * KEYWORDS.length)];
@@ -41,8 +40,8 @@ client.on('messageCreate', message => {
       `"${selectedKeyword}"\n` +
       "出走前にプレイする冒険の書とは別の場所に、主人公の名前を指定行動のものにしたデータを作成してください。";
     
-    // チャンネルにメッセージを送信
-    message.channel.send(replyMessage);
+    // 元のメッセージに対してリプライで送信
+    message.reply(replyMessage);
   }
 });
 
