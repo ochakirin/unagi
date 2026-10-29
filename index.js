@@ -20,6 +20,9 @@ const KEYWORDS = [
   "つなかん", "いくら"
 ];
 
+// 反応させたいチャンネルのID
+const TARGET_CHANNEL_ID = '1561271971113738260';
+
 client.once('ready', () => {
   console.log(`Botがログインしました: ${client.user.tag}`);
 });
@@ -27,6 +30,9 @@ client.once('ready', () => {
 client.on('messageCreate', message => {
   // Bot自身のメッセージには反応しない
   if (message.author.bot) return;
+
+  // 指定したチャンネル以外のメッセージは無視する
+  if (message.channel.id !== TARGET_CHANNEL_ID) return;
 
   // メッセージに「出走」が含まれているか判定
   if (message.content.includes("出走")) {
